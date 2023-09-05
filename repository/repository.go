@@ -3,12 +3,17 @@ package repository
 import (
 	"context"
 
-	"github.com/F-Dupraz/go-grpc-protobuf"
+	"github.com/F-Dupraz/go-grpc-protobuf/models"
 )
 
 type Repository interface {
 	GetStudent(ctx context.Context, id string) (*models.Student, error)
 	SetStudent(ctx context.Context, student *models.Student) error
+	GetTest(ctx context.Context, id string) (*models.Test, error)
+	SetTest(ctx context.Context, test *models.Test) error
+	SetQuestion(ctx context.Context, question *models.Question) error
+	SetEnrollment(ctx context.Context, question *models.Enrollment) error
+	GetStudentsPerTest(ctx context.Context, testId string) ([]*models.Student, error)
 }
 
 var implementation Repository
@@ -18,9 +23,29 @@ func SetRepository(repository Repository) {
 }
 
 func GetStudent(ctx context.Context, id string) (*models.Student, error) {
-	return implementation = GetStudent(ctx, id)
+	return implementation.GetStudent(ctx, id)
 }
 
 func SetStudent(ctx context.Context, student *models.Student) error {
-	return implementation = SetStudent(ctx, student)
+	return implementation.SetStudent(ctx, student)
+}
+
+func GetTest(ctx context.Context, id string) (*models.Test, error) {
+	return implementation.GetTest(ctx, id)
+}
+
+func SetTest(ctx context.Context, test *models.Test) error {
+	return implementation.SetTest(ctx, test)
+}
+
+func SetQuestion(ctx context.Context, question *models.Question) error {
+	return implementation.SetQuestion(ctx, question)
+}
+
+func SetEnrollment(ctx context.Context, enrollment *models.Enrollment) error {
+	return implementation.SetEnrollment(ctx, enrollment)
+}
+
+func GetStudentsPerTest(ctx context.Context, testId string) ([]*models.Student, error) {
+	return implementation.GetStudentsPerTest(ctx, testId)
 }

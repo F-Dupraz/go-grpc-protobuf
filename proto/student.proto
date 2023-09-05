@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package student;
 
-option go_package = "github.com/F-Dupraz/go-grpc-protobuf;studentpb";
+option go_package = "platzi.com/go/grpc/studentpb";
 
 message Student {
   string id = 1;
@@ -17,6 +17,7 @@ message GetStudentRequest {
 message SetStudentResponse {
   string id = 1;
 }
+
 
 service StudentService {
   rpc GetStudent(GetStudentRequest) returns (Student);
